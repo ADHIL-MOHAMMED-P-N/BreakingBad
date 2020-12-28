@@ -9,4 +9,21 @@ body {
   text-align: center;
   font-size: 3rem;
   font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+.input {
+  display: flex;
+  justify-content: center;
+}
+
+.search__input {
+  width: 300px;
+  height: 30px;
+  padding-left: 1rem;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.search__input:focus {
+  outline: none;
 }
