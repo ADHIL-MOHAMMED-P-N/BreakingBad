@@ -3,6 +3,8 @@ import Nav from "./components/Nav";
 import "./App.css";
 import Characters from "./components/Characters";
 import Episodes from "./components/Episodes";
+import Quotes from "./components/Quotes";
+import Deaths from "./components/Deaths";
 import { Route, BrowserRouter as Router, Link, Switch } from "react-router-dom";
 
 //url of characters
@@ -45,11 +47,17 @@ const App = () => {
           />
         </div>
 
-        <Route path="/episodes">
+        <Route path="/episodes" exact>
           <Episodes />
         </Route>
         <Route path="/" exact>
           <Characters characters={characters} search={search} />
+        </Route>
+        <Route path="/quotes" exact>
+          <Quotes />
+        </Route>
+        <Route path="/deaths" exact>
+          <Deaths />
         </Route>
       </Router>
     </>
