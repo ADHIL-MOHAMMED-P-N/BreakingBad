@@ -5,7 +5,7 @@ import Characters from "./components/Characters";
 import Episodes from "./components/Episodes";
 import Quotes from "./components/Quotes";
 import Deaths from "./components/Deaths";
-import { Route, BrowserRouter as Router, Link, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
 //url of characters
 const url = "https://breakingbadapi.com/api/characters";
@@ -20,7 +20,7 @@ const App = () => {
     setCharacters(characterList);
   };
 
-  useState(() => {
+  useEffect(() => {
     getCharacters();
   }, []);
 
@@ -35,23 +35,15 @@ const App = () => {
       <Router>
         <Nav />
 
-        <h1 className="heading">Characters</h1>
-        <div className="input">
-          <input
-            className="search__input"
-            type="text"
-            placeholder="Search.."
-            onChange={(event) => {
-              searchItem(event.target.value);
-            }}
-          />
-        </div>
-
         <Route path="/episodes" exact>
           <Episodes />
         </Route>
         <Route path="/" exact>
-          <Characters characters={characters} search={search} />
+          <Characters
+            characters={characters}
+            search={search}
+            searchItem={searchItem}
+          />
         </Route>
         <Route path="/quotes" exact>
           <Quotes />
