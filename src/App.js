@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Nav from "./components/Nav";
 import "./App.css";
 import Characters from "./components/Characters";
+import Episodes from "./components/Episodes";
+import { Route, BrowserRouter as Router, Link, Switch } from "react-router-dom";
 
 //url of characters
 const url = "https://breakingbadapi.com/api/characters";
@@ -28,21 +30,28 @@ const App = () => {
 
   return (
     <>
-      <Nav />
+      <Router>
+        <Nav />
 
-      <h1 className="heading">Characters</h1>
-      <div className="input">
-        <input
-          className="search__input"
-          type="text"
-          placeholder="Search.."
-          onChange={(event) => {
-            searchItem(event.target.value);
-          }}
-        />
-      </div>
+        <h1 className="heading">Characters</h1>
+        <div className="input">
+          <input
+            className="search__input"
+            type="text"
+            placeholder="Search.."
+            onChange={(event) => {
+              searchItem(event.target.value);
+            }}
+          />
+        </div>
 
-      <Characters characters={characters} search={search} />
+        <Route path="/episodes">
+          <Episodes />
+        </Route>
+        <Route path="/" exact>
+          <Characters characters={characters} search={search} />
+        </Route>
+      </Router>
     </>
   );
 };
