@@ -8,20 +8,29 @@ import Deaths from "./components/Deaths";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 
 //url of characters
-const url = "https://breakingbadapi.com/api/characters";
+const urlChar = "https://breakingbadapi.com/api/characters";
+const urlEpi = "https://breakingbadapi.com/api/episodes";
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [search, setSearch] = useState("");
+  const [episodes, setEpisodes] = useState([]);
   //fetch function
   const getCharacters = async () => {
-    const response = await fetch(url);
+    const response = await fetch(urlChar);
     const characterList = await response.json();
     setCharacters(characterList);
   };
 
+  const getEpisodes = async () => {
+    const response = await fetch(urlEpi);
+    const EpisodesList = await response.json();
+    setEpisodes(EpisodesList);
+  };
+
   useEffect(() => {
     getCharacters();
+    getEpisodes();
   }, []);
 
   //searching
@@ -36,7 +45,7 @@ const App = () => {
         <Nav />
 
         <Route path="/episodes" exact>
-          <Episodes />
+          <Episodes episodes={episodes} />
         </Route>
         <Route path="/" exact>
           <Characters
